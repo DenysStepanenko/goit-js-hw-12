@@ -13,11 +13,11 @@ import 'izitoast/dist/css/iziToast.min.css';
 const searchForm = document.querySelector('.search-form');
 const loadMoreBtn = document.querySelector('.load-more');
 
-let currentQuery = ''; // Store the current search query
-let currentPage = 1; // Track the current page
-let totalHits = 0; // Track the total number of images
+let currentQuery = ''; 
+let currentPage = 1; 
+let totalHits = 0;  
 
-// Handle form submission
+
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   const query = event.target.elements.query.value.trim();
@@ -27,17 +27,17 @@ searchForm.addEventListener('submit', async event => {
     return;
   }
 
-  currentQuery = query; // Save the search query
-  currentPage = 1; // Reset to page 1 for a new search
-  clearGallery(); // Clear the gallery
-  hideLoadMoreButton(); // Hide the "Load more" button initially
-  showLoader(); // Show the loader
+  currentQuery = query; 
+  currentPage = 1; 
+  clearGallery(); 
+  hideLoadMoreButton(); 
+  showLoader(); 
 
   try {
     const data = await getImagesByQuery(currentQuery, currentPage);
-    hideLoader(); // Hide the loader
+    hideLoader(); 
 
-    totalHits = data.totalHits; // Update totalHits
+    totalHits = data.totalHits; 
     const images = data.hits;
 
     if (images.length === 0) {
@@ -48,10 +48,10 @@ searchForm.addEventListener('submit', async event => {
       return;
     }
 
-    createGallery(images); // Render the images
+    createGallery(images); 
     iziToast.success({ title: 'Success', message: `Found ${totalHits} images!` });
 
-    // Check if there are more images to load
+    
     if (images.length < 15 || currentPage * 15 >= totalHits) {
       hideLoadMoreButton();
       if (currentPage * 15 >= totalHits) {
@@ -61,7 +61,7 @@ searchForm.addEventListener('submit', async event => {
         });
       }
     } else {
-      showLoadMoreButton(); // Show the "Load more" button if there are more images
+      showLoadMoreButton(); 
     }
   } catch (error) {
     hideLoader();
@@ -69,20 +69,20 @@ searchForm.addEventListener('submit', async event => {
   }
 });
 
-// Handle "Load more" button click
+
 loadMoreBtn.addEventListener('click', async () => {
-  currentPage += 1; // Increment the page number
-  showLoader(); // Show the loader
-  hideLoadMoreButton(); // Hide the "Load more" button while loading
+  currentPage += 1; 
+  showLoader(); 
+  hideLoadMoreButton(); 
 
   try {
     const data = await getImagesByQuery(currentQuery, currentPage);
-    hideLoader(); // Hide the loader
+    hideLoader(); 
 
     const images = data.hits;
-    createGallery(images); // Append the new images
+    createGallery(images); 
 
-    // Smooth scrolling: Scroll by the height of two gallery cards
+    
     const galleryItem = document.querySelector('.gallery-item');
     if (galleryItem) {
       const cardHeight = galleryItem.getBoundingClientRect().height;
@@ -92,7 +92,7 @@ loadMoreBtn.addEventListener('click', async () => {
       });
     }
 
-    // Check if there are more images to load
+    
     if (images.length < 15 || currentPage * 15 >= totalHits) {
       hideLoadMoreButton();
       if (currentPage * 15 >= totalHits) {
@@ -102,7 +102,7 @@ loadMoreBtn.addEventListener('click', async () => {
         });
       }
     } else {
-      showLoadMoreButton(); // Show the "Load more" button if there are more images
+      showLoadMoreButton(); 
     }
   } catch (error) {
     hideLoader();

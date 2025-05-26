@@ -1,7 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// Initialize SimpleLightbox for the gallery
+
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
@@ -11,7 +11,7 @@ const galleryContainer = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 const loadMoreBtn = document.querySelector('.load-more');
 
-// Function to create gallery markup and append it
+
 export function createGallery(images) {
   const markup = images
     .map(
@@ -29,31 +29,31 @@ export function createGallery(images) {
     )
     .join('');
 
-  galleryContainer.insertAdjacentHTML('beforeend', markup); // Append new images
-  lightbox.refresh(); // Refresh SimpleLightbox to include new images
+  galleryContainer.insertAdjacentHTML('beforeend', markup); 
+  lightbox.refresh(); 
 }
 
-// Function to clear the gallery
+
 export function clearGallery() {
-  galleryContainer.innerHTML = ''; // Clear the gallery container
+  galleryContainer.innerHTML = ''; 
 }
 
-// Function to show the loader
+
 export function showLoader() {
-  loader.classList.add('visible'); // Add a class to show the loader
+  loader.classList.add('visible'); 
 }
 
-// Function to hide the loader
+
 export function hideLoader() {
-  loader.classList.remove('visible'); // Remove the class to hide the loader
+  loader.classList.remove('visible'); 
 }
 
-// Function to show the "Load more" button
+
 export function showLoadMoreButton() {
-  loadMoreBtn.classList.add('visible'); // Add a class to show the button
+  loadMoreBtn.classList.add('visible'); 
 }
 
-// Function to hide the "Load more" button
+
 export function hideLoadMoreButton() {
-  loadMoreBtn.classList.remove('visible'); // Remove the class to hide the button
+  loadMoreBtn.classList.remove('visible'); 
 }

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HW12</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Search App</title>
+  <link rel="stylesheet" href="./src/css/styles.css" />
+</head>
+<body>
+  <header>
+    <form class="search-form">
+      <input type="text" name="query" placeholder="Search images..." autocomplete="off" />
+      <button type="submit">Search</button>
+    </form>
+  </header>
 
-    <main>
-    
-    </main>
+  <main>
+    <div class="gallery"></div>
+    <button class="load-more">Load more</button>
+    <div class="loader"></div>
+  </main>
 
-    
-
-    <script type="module" src="./main.js"></script>
-  </body>
+  <script type="module" src="./src/js/main.js"></script>
+</body>
 </html>

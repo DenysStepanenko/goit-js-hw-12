@@ -10,79 +10,75 @@ import {
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const searchForm = document.querySelector('.search-form');
+const searchForm = document.querySelector('.form'); // Змінено з .search-form на .form
 const loadMoreBtn = document.querySelector('.load-more');
 
-let currentQuery = ''; 
-let currentPage = 1; 
-let totalHits = 0;  
-
+let currentQuery = '';
+let currentPage = 1;
+let totalHits = 0;
 
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   const query = event.target.elements.query.value.trim();
 
   if (!query) {
-    iziToast.error({ title: 'Error', message: 'Please enter a search query!' });
+    iziToast.error({ title: 'Ошибка', message: 'Введите поисковый запрос!' });
     return;
   }
 
-  currentQuery = query; 
-  currentPage = 1; 
-  clearGallery(); 
-  hideLoadMoreButton(); 
-  showLoader(); 
+  currentQuery = query;
+  currentPage = 1;
+  clearGallery();
+  hideLoadMoreButton();
+  showLoader();
 
   try {
     const data = await getImagesByQuery(currentQuery, currentPage);
-    hideLoader(); 
+    hideLoader();
 
-    totalHits = data.totalHits; 
+    totalHits = data.totalHits;
     const images = data.hits;
 
     if (images.length === 0) {
       iziToast.warning({
-        title: 'No Results',
-        message: 'Sorry, there are no images matching your search query. Please try again!',
+        title: 'Нет результатов',
+        message: 'Извините, по вашему запросу ничего не найдено. Попробуйте снова!',
       });
       return;
     }
 
-    createGallery(images); 
-    iziToast.success({ title: 'Success', message: `Found ${totalHits} images!` });
+    createGallery(images);
+    iziToast.success({ title: 'Успех', message: `Найдено ${totalHits} изображений!` });
 
-    
     if (images.length < 15 || currentPage * 15 >= totalHits) {
       hideLoadMoreButton();
       if (currentPage * 15 >= totalHits) {
         iziToast.info({
-          title: 'End of Collection',
-          message: "We're sorry, but you've reached the end of search results.",
+          title: 'Конец коллекции',
+          message: 'Извините, вы достигли конца результатов поиска.',
         });
       }
     } else {
-      showLoadMoreButton(); 
+      showLoadMoreButton();
     }
   } catch (error) {
     hideLoader();
-    iziToast.error({ title: 'Error', message: 'Failed to fetch images. Please try again later.' });
+    iziToast.error({ title: 'Ошибка', message: 'Не удалось загрузить изображения. Попробуйте снова!' });
   }
 });
 
-
 loadMoreBtn.addEventListener('click', async () => {
-  currentPage += 1; 
-  showLoader(); 
-  hideLoadMoreButton(); 
+  currentPage += 1;
+  showLoader();
+  hideLoadMoreButton();
 
   try {
     const data = await getImagesByQuery(currentQuery, currentPage);
-    hideLoader(); 
+    hideLoader();
 
     const images = data.hits;
-    createGallery(images); 
+    createGallery(images);
 
-    
     const galleryItem = document.querySelector('.gallery-item');
     if (galleryItem) {
       const cardHeight = galleryItem.getBoundingClientRect().height;
@@ -92,20 +88,19 @@ loadMoreBtn.addEventListener('click', async () => {
       });
     }
 
-    
     if (images.length < 15 || currentPage * 15 >= totalHits) {
       hideLoadMoreButton();
       if (currentPage * 15 >= totalHits) {
         iziToast.info({
-          title: 'End of Collection',
-          message: "We're sorry, but you've reached the end of search results.",
+          title: 'Конец коллекции',
+          message: 'Извините, вы достигли конца результатов поиска.',
         });
       }
     } else {
-      showLoadMoreButton(); 
+      showLoadMoreButton();
     }
   } catch (error) {
     hideLoader();
-    iziToast.error({ title: 'Error', message: 'Failed to fetch images. Please try again later.' });
+    iziToast.error({ title: 'Ошибка', message: 'Не удалось загрузить изображения. Попробуйте снова!' });
   }
 });

@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Search App</title>
-  <link rel="stylesheet" href="./css/styles.css" />
+  <title>Приложение для поиска изображений</title>
+  <link rel="stylesheet" href="./src/css/styles.css" />
 </head>
 <body>
   <header>
-    <form class="search-form">
-      <input type="text" name="query" placeholder="Search images..." autocomplete="off" />
-      <button type="submit">Search</button>
+    <form class="form">
+      <input type="text" name="query" placeholder="Поиск изображений..." autocomplete="off" />
+      <button type="submit">Поиск</button>
     </form>
   </header>
 
   <main>
-    <div class="gallery"></div>
-    <button class="load-more">Load more</button>
-    <div class="loader"></div>
+    <ul class="gallery"></ul>
+    <button class="load-more">Загрузить еще</button>
+    <span class="loader"></span>
   </main>
 
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>

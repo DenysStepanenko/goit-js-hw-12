@@ -1,4 +1,3 @@
-/* Базові стилі */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,13 +6,11 @@ body {
   color: #333;
 }
 
-/* Стилі для заголовка */
 header {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Стилі для форми */
 .form {
   display: flex;
   justify-content: center;
@@ -49,14 +46,13 @@ header {
   background-color: #0056b3;
 }
 
-/* Стилі для галереї */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 0;
   margin: 0;
-  list-style: none; /* Прибираємо маркери списку */
+  list-style: none;
 }
 
 .gallery li {
@@ -97,7 +93,6 @@ header {
   font-weight: bold;
 }
 
-/* Стилі для кнопки "Load more" */
 .load-more {
   display: none;
   margin: 20px auto;
@@ -119,7 +114,6 @@ header {
   background-color: #218838;
 }
 
-/* Стилі для лоадера */
 .loader {
   display: none;
   width: 40px;

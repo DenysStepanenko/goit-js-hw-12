@@ -18,10 +18,10 @@ export function createGallery(images) {
           <a href="${image.largeImageURL}" class="gallery-item">
             <img src="${image.webformatURL}" alt="${image.tags}" />
             <div class="info">
-              <p>Лайки: ${image.likes}</p>
-              <p>Просмотры: ${image.views}</p>
-              <p>Комментарии: ${image.comments}</p>
-              <p>Скачивания: ${image.downloads}</p>
+              <p>Likes: ${image.likes}</p>
+              <p>Views: ${image.views}</p>
+              <p>Comments: ${image.comments}</p>
+              <p>Downloads: ${image.downloads}</p>
             </div>
           </a>
         </li>

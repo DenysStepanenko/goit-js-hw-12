@@ -10,7 +10,7 @@ import {
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const searchForm = document.querySelector('.form'); // Змінено з .search-form на .form
+const searchForm = document.querySelector('.form');
 const loadMoreBtn = document.querySelector('.load-more');
 
 let currentQuery = '';
@@ -22,7 +22,7 @@ searchForm.addEventListener('submit', async event => {
   const query = event.target.elements.query.value.trim();
 
   if (!query) {
-    iziToast.error({ title: 'Ошибка', message: 'Введите поисковый запрос!' });
+    iziToast.error({ title: 'Error', message: 'Please enter a search query!' });
     return;
   }
 
@@ -41,21 +41,21 @@ searchForm.addEventListener('submit', async event => {
 
     if (images.length === 0) {
       iziToast.warning({
-        title: 'Нет результатов',
-        message: 'Извините, по вашему запросу ничего не найдено. Попробуйте снова!',
+        title: 'No Results',
+        message: 'Sorry, there are no images matching your search query. Please try again!',
       });
       return;
     }
 
     createGallery(images);
-    iziToast.success({ title: 'Успех', message: `Найдено ${totalHits} изображений!` });
+    iziToast.success({ title: 'Success', message: `Found ${totalHits} images!` });
 
     if (images.length < 15 || currentPage * 15 >= totalHits) {
       hideLoadMoreButton();
       if (currentPage * 15 >= totalHits) {
         iziToast.info({
-          title: 'Конец коллекции',
-          message: 'Извините, вы достигли конца результатов поиска.',
+          title: 'End of Collection',
+          message: "We're sorry, but you've reached the end of search results.",
         });
       }
     } else {
@@ -63,7 +63,7 @@ searchForm.addEventListener('submit', async event => {
     }
   } catch (error) {
     hideLoader();
-    iziToast.error({ title: 'Ошибка', message: 'Не удалось загрузить изображения. Попробуйте снова!' });
+    iziToast.error({ title: 'Error', message: 'Failed to fetch images. Please try again later.' });
   }
 });
 
@@ -92,8 +92,8 @@ loadMoreBtn.addEventListener('click', async () => {
       hideLoadMoreButton();
       if (currentPage * 15 >= totalHits) {
         iziToast.info({
-          title: 'Конец коллекции',
-          message: 'Извините, вы достигли конца результатов поиска.',
+          title: 'End of Collection',
+          message: "We're sorry, but you've reached the end of search results.",
         });
       }
     } else {
@@ -101,6 +101,6 @@ loadMoreBtn.addEventListener('click', async () => {
     }
   } catch (error) {
     hideLoader();
-    iziToast.error({ title: 'Ошибка', message: 'Не удалось загрузить изображения. Попробуйте снова!' });
+    iziToast.error({ title: 'Error', message: 'Failed to fetch images. Please try again later.' });
   }
 });

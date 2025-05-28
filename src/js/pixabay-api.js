@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '50358243-9944b3624f9c71a45bbdf1549'; //
+const API_KEY = '50358243-9944b3624f9c71a45bbdf1549'; 
 const BASE_URL = 'https://pixabay.com/api/';
 
 export async function getImagesByQuery(query, page) {
@@ -18,6 +18,6 @@ export async function getImagesByQuery(query, page) {
     });
     return response.data;
   } catch (error) {
-    throw new Error('Не удалось загрузить изображения с Pixabay');
+    throw new Error('Failed to fetch images from Pixabay');
   }
 }
